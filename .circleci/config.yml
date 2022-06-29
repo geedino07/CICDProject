@@ -27,7 +27,7 @@ jobs:
       - run: echo " My pipeline id is << pipeline.id >> and my git branch is << pipeline.git.branch >> "
       - run: 
           name: "echo the first and second evironment variable set for the project"
-          command: echo " My name is $ENV_VAR_NAME . And I am $ENV_VAR_AGE years old"
+          command: echo " My name is $env_var_name . And I am $env_var_age years old"
 
 workflows:
   env-var-name:
