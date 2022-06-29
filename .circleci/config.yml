@@ -9,34 +9,18 @@ jobs:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: circleci/node:13.8.0
+      - image: cimg/base:stable
+    # Add steps to the job
+    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
-      - run: echo hello to my lovely wife Okeke
-  print_world:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - run: echo Gerald world
-  print_pipelineid:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - run: echo "This is pipeline ID << pipeline.id >>"
-      - run: echo " This is project type << pipeline.project.type >> "
-      - run: echo " This is git branch << pipeline.git.branch >> "
-      - run: echo " My pipeline id is << pipeline.id >> and my git branch is << pipeline.git.branch >> "
-      - run: 
-          name: "Echo custom Environment variable"
-          command: echo 'export $ENV_VAR_NAMES ="PETER PARKET Nwogbo"' >> $BASH_ENV
+      - checkout
       - run:
-          NAME: echo "Print Environment Name"
-          command: echo ${ENV_VAR_NAMES}
+          name: "Say hello"
+          command: "echo Hello, World!"
 
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  welcome:
+  say-hello-workflow:
     jobs:
       - say-hello
-      - print_world:
-          requires:
-            - say-hello
-      - print_pipelineid
