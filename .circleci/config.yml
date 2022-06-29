@@ -12,7 +12,7 @@ jobs: # basic units of work in a run
       - checkout # check out source code to working directory
       - run:
           name: "Setup custom environment variables"
-          command: echo 'export MY_ENV_VAR="FOO"' >> $BASH_ENV
+          command: echo 'export MY_ENV_VAR_GERALD="GERALD okeke"' >> $BASH_ENV
       - run: # print the name of the branch we're on
           name: "What branch am I on?"
           command: echo ${CIRCLE_BRANCH}
@@ -23,7 +23,7 @@ jobs: # basic units of work in a run
           command: echo $CIRCLE_BRANCH
       - run:
           name: "What was my custom environment variable?"
-          command: echo ${MY_ENV_VAR}
+          command: echo ${MY_ENV_VAR_GERALD}
       - run:
           name: "Print an env var stored in the Project"
           command: echo ${env_var_name}
