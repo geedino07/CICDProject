@@ -1,22 +1,36 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-parameters:
-  image-tag:
-    type: string
-    default: "latest"
-  workingdir:
-    type: string
-    default: "~/main"
 
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  build:
+  say-hello:
+    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: cimg/node:<< pipeline.parameters.image-tag >>
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-    environment:
-      IMAGETAG: << pipeline.parameters.image-tag >>
-    working_directory: << pipeline.parameters.workingdir >>
+      - image: circleci/node:13.8.0
     steps:
-      - run: echo "Image tag used was ${IMAGETAG}"
-      - run: echo "$(pwd) == << pipeline.parameters.workingdir >>"
+      - run: echo hello to my lovely wife Okeke
+  print_world:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run: echo Gerald world
+  print_pipelineid:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run: echo "This is pipeline ID << pipeline.id >>"
+      - run: echo " This is project type << pipeline.project.type >> "
+      - run: echo " This is git branch << pipeline.git.branch >> "
+      - run: echo " My pipeline id is << pipeline.id >> and my git branch is << pipeline.git.branch >> "
+
+workflows:
+  welcome:
+    jobs:
+      - say-hello
+      - print_world:
+          requires:
+            - say-hello
+      - print_pipelineid
