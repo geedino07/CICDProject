@@ -26,6 +26,7 @@ jobs:
       - run: echo "This is pipeline ID << pipeline.id >>"
       - run: echo " This is project type << pipeline.project.type >> "
       - run: echo " This is git branch << pipeline.git.branch >> "
+      - run: My pipeline id is << pipeline.id >> and my git branch is << pipeline.git.branch >>.
 
 workflows:
   welcome:
