@@ -1,9 +1,5 @@
 version: 2.1
 
-workflows:
-  test-env-vars:
-    jobs:
-      - build
 
 jobs:
   build:
@@ -13,6 +9,6 @@ jobs:
       - checkout
       - run:
           name: "echo an env var that is part of our project"
-          command: |
-            BERET = "raspberry"
-            echo $BERET
+          command: echo $RAIN
+          environment:
+            RAIN: Purple
