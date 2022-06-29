@@ -24,6 +24,8 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - run: echo "This is pipeline ID << pipeline.id >>"
+      - run: echo " This is project type << pipeline.project.type >> "
+      - run: echo " This is git branch << pipeline.git.branch >> "
 
 workflows:
   welcome:
