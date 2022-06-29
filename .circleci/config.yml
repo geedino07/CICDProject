@@ -27,7 +27,7 @@ jobs:
       - run: echo " My pipeline id is << pipeline.id >> and my git branch is << pipeline.git.branch >> "
       - run: 
           name: "Echo custom Environment variable"
-          command: echo 'export $ENV_VAR_NAME ="GERALD OKEKE"' >> $BASH_ENV"
+          command: echo 'export $ENV_VAR_NAME ="GERALD OKEKE"' >> $BASH_ENV
       - run:
           command: echo ${ENV_VAR_NAME}
 
