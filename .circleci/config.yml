@@ -1,5 +1,10 @@
 version: 2.1
 
+workflows:
+  test-env-vars:
+    jobs:
+      - build
+
 jobs:
   build:
     docker:
@@ -9,5 +14,5 @@ jobs:
       - run:
           name: "echo an env var that is part of our project"
           command: |
-            BERET = "raspberry FLAVOUR"
+            BERET = "raspberry"
             echo $BERET
