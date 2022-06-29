@@ -28,13 +28,10 @@ jobs:
       - run: 
           name: "echo the first and second evironment variable set for the project"
           command: |
-            echo " My name is $env_var_name . And I am $env_var_age years old"
+            echo $env_var_name
 
 workflows:
   env-var-name:
-    jobs:
-      - build
-  env-var-age:
     jobs:
       - build
   welcome:
