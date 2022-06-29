@@ -29,6 +29,7 @@ jobs:
           name: "Echo custom Environment variable"
           command: echo 'export $ENV_VAR_NAME ="GERALD OKEKE"' >> $BASH_ENV
       - run:
+          NAME: "Print Environment Name"
           command: echo ${ENV_VAR_NAME}
 
 workflows:
