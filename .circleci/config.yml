@@ -45,7 +45,7 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: cat ~/output.txt
-      - run: cat ~/containers.txt
+      - run: cat ~/container.txt
       - run:
           name: job failed messages
           command: echo "Job as failed"  
