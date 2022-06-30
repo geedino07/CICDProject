@@ -1,16 +1,23 @@
 # Use the latest 2.1 version of CircleCI pipeline process engine.
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
+#first way to use commands
+#commands:
+#  print_pipeline_id:
+#   description: "A command to  print pipeline id"
+#    parameters:
+#      to:
+#        type: string
+#        default: $CIRCLE_WORKFLOW_ID
+#    steps:
+#      - run: echo << parameters.to >> 
 
+#Another way to use commands
 commands:
   print_pipeline_id:
     description: "A command to  print pipeline id"
-    parameters:
-      to:
-        type: string
-        default: $CIRCLE_WORKFLOW_ID
     steps:
-      - run: echo << parameters.to >> 
+      - run: echo ${CIRCLE_WORKFLOW_ID} 
 
 
 # Define a job to be invoked later in a workflow.
@@ -27,8 +34,7 @@ jobs:
           paths:
            - output.txt
            - container.txt
-      - print_pipeline_id:
-          to:
+      - print_pipeline_id
 
   print_output_file:
     docker:
@@ -52,6 +58,7 @@ jobs:
           NAME: echo "Print Environment Name"
           command: echo ${ENV_VAR_NAMES}
       - run: curl --insecure  https://kvdb.io/S3PHD4fDhjYCxQmN9BkJ9r/container
+      - print_pipeline_id
 
 workflows:
   welcome:
