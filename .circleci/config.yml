@@ -5,23 +5,27 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+  save_hello_world_output:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: echo hello to my lovely wife Okeke
-  print_world:
+      - run: mkdir -p workspace
+      - run: echo "hello to my lovely wife Okeke" > workspace/output.txt
+      - persist_to_workspace:
+        root: workspace
+        paths:
+          - output.txt
+  print_output_file:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: echo Gerald world
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: echo cat output.txt
   print_pipelineid:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: echo "This is pipeline ID << pipeline.id >>"
       - run: echo " This is project type << pipeline.project.type >> "
       - run: echo " This is git branch << pipeline.git.branch >> "
       - run: echo " My pipeline id is << pipeline.id >> and my git branch is << pipeline.git.branch >> "
@@ -35,8 +39,8 @@ jobs:
 workflows:
   welcome:
     jobs:
-      - say-hello
+      - save_hello_world_output
       - print_world:
           requires:
-            - say-hello
+            - print_output_file
       - print_pipelineid
