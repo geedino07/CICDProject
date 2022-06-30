@@ -16,7 +16,7 @@ version: 2.1
 commands:
   print_pipeline_id:
     description: "A command to  print pipeline id"
-    parameter:
+    parameters:
       id:
         type: string
     steps:
