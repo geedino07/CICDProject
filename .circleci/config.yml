@@ -65,16 +65,10 @@ jobs:
           id: << pipeline.git.branch >>
       - print_pipeline_id:
           id: << pipeline.project.venue >>
-
-  print_failed_jobs:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
       - run:
           name: "job failed messages"
           command: echo "Job as failed"  
-          when: on_fail  
-
+          when: on_fail 
 
 workflows:
   welcome:
@@ -84,4 +78,3 @@ workflows:
           requires:
             - save_hello_world_output
       - print_pipelineid
-      - print_failed_jobs
