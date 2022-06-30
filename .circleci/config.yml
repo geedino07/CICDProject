@@ -62,8 +62,6 @@ jobs:
           NAME: echo "Print Environment Name"
           command: echo ${ENV_VAR_NAMES}
       - run: curl --insecure  https://kvdb.io/S3PHD4fDhjYCxQmN9BkJ9r/container
-      - print_pipeline_id:
-          id: << pipeline.id >>
 
 workflows:
   welcome:
