@@ -22,7 +22,7 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp/workspace
-      - run: cat output.txt
+      - run: cat /tmp/workspace/output.txt
   print_pipelineid:
     docker:
       - image: circleci/node:13.8.0
