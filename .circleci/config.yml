@@ -64,8 +64,8 @@ jobs:
       - print_pipeline_id:
           id: << pipeline.git.branch >>
       - print_pipeline_id:
-          id: << pipeline.project.type >>
-      - run: return 1
+          id: << pipeline.project.type.name >>
+#      - run: return 1
       - run:
           name: job failed messages
           command: echo "Job as failed"  
