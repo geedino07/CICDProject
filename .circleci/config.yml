@@ -10,11 +10,11 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - run: mkdir -p workspace
-      - run: echo "hello to my lovely wife Okeke" > workspace/output.txt
+      - run: echo "hello to my lovely wife Okeke" > /tmp/workspace/output.txt
       - persist_to_workspace:
-        root: workspace
-        paths:
-          - output.txt
+          root: /tmp/workspace
+          paths:
+           - output.txt
   print_output_file:
     docker:
       - image: circleci/node:13.8.0
