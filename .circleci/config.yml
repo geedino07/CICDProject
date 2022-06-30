@@ -45,7 +45,11 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: cat ~/output.txt
-      - run: cat ~/container.txt
+      - run: cat ~/containers.txt
+      - run:
+          name: job failed messages
+          command: echo "Job as failed"  
+          when: on_fail
 
   print_pipelineid:
     docker:
@@ -64,7 +68,7 @@ jobs:
       - print_pipeline_id:
           id: << pipeline.git.branch >>
       - print_pipeline_id:
-          id: << pipeline.project.type.name >>
+          id: << pipeline.project.type >>
 #      - run: return 1
       - run:
           name: job failed messages
