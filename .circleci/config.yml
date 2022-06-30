@@ -20,7 +20,7 @@ commands:
       id:
         type: string
     steps:
-      - run: echo << pipeline.id >> 
+      - run: echo << parameters.id >> 
 
 
 # Define a job to be invoked later in a workflow.
