@@ -38,7 +38,7 @@ jobs:
            - output.txt
            - container.txt
       - print_pipeline_id:
-            id: << pipeline.id >>
+          id: << pipeline.id >>
 
   print_output_file:
     docker:
