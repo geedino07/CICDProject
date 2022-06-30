@@ -41,7 +41,7 @@ workflows:
   welcome:
     jobs:
       - save_hello_world_output
-      - print_world:
+      - print_output_file:
           requires:
-            - print_output_file
+            - save_hello_world_output
       - print_pipelineid
