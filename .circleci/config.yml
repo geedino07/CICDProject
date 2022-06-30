@@ -17,7 +17,7 @@ commands:
   print_pipeline_id:
     description: "A command to  print pipeline id"
     steps:
-      - run: echo ${pipeline.id} 
+      - run: echo << pipeline.id >> 
 
 
 # Define a job to be invoked later in a workflow.
