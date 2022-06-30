@@ -71,9 +71,9 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - run:
-        name: "job failed messages"
-        command: echo "Job as failed"  
-        when: on_fail  
+          name: "job failed messages"
+          command: echo "Job as failed"  
+          when: on_fail  
 
 
 workflows:
